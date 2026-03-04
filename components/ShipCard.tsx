@@ -1,13 +1,15 @@
 import Image from "next/image";
+import Link from "next/link";
 import { format, parseISO } from "date-fns";
 import type { Ship } from "@/types/ship";
 
 interface Props {
   ship: Ship;
   truncate?: boolean;
+  href?: string;
 }
 
-export default function ShipCard({ ship, truncate = true }: Props) {
+export default function ShipCard({ ship, truncate = true, href }: Props) {
   const dateLabel = (() => {
     try {
       return format(parseISO(ship.ship_date), "MMM d, yyyy");
@@ -16,8 +18,8 @@ export default function ShipCard({ ship, truncate = true }: Props) {
     }
   })();
 
-  return (
-    <div className="bg-ship-card rounded-xl border border-ship-border overflow-hidden">
+  const cardBody = (
+    <>
       {/* Screenshot area */}
       {ship.screenshot_url ? (
         <div className="relative w-full aspect-video">
@@ -46,6 +48,7 @@ export default function ShipCard({ ship, truncate = true }: Props) {
               href={ship.link_url}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
               className="ml-auto flex items-center gap-1 text-[10px] text-ship-accent border border-ship-accent/40 rounded-full px-2 py-0.5 hover:bg-ship-accent/10 transition-colors"
             >
               <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -62,6 +65,23 @@ export default function ShipCard({ ship, truncate = true }: Props) {
           </p>
         )}
       </div>
+    </>
+  );
+
+  if (href) {
+    return (
+      <Link
+        href={href}
+        className="block bg-ship-card rounded-xl border border-ship-border overflow-hidden hover:border-ship-accent/50 transition-colors"
+      >
+        {cardBody}
+      </Link>
+    );
+  }
+
+  return (
+    <div className="bg-ship-card rounded-xl border border-ship-border overflow-hidden">
+      {cardBody}
     </div>
   );
 }
