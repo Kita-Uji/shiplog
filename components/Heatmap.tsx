@@ -1,14 +1,16 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { format, subDays, startOfWeek, eachDayOfInterval, addDays } from "date-fns";
+import { useMemo, useState, useRef, useEffect } from "react";
+import { format, subDays, startOfWeek, addDays } from "date-fns";
 import type { Ship } from "@/types/ship";
 
 interface Props {
   ships: Ship[];
 }
 
-const WEEKS = 16;
+const CELL_SIZE = 24; // w-6 h-6 = 24px (150% of previous w-4 h-4)
+const GAP = 2;
+const COL_STRIDE = CELL_SIZE + GAP;
 
 function getCellColor(count: number) {
   if (count === 0) return "bg-[#EEEEEA]";
@@ -20,20 +22,32 @@ function getCellColor(count: number) {
 
 export default function Heatmap({ ships }: Props) {
   const [tooltip, setTooltip] = useState<{ text: string; x: number; y: number } | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [weeks, setWeeks] = useState(16);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const measure = () => {
+      const w = el.clientWidth;
+      if (w > 0) setWeeks(Math.max(1, Math.floor(w / COL_STRIDE)));
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   const { grid, months } = useMemo(() => {
     const today = new Date();
-    // Build a map: date string -> count
     const countMap: Record<string, number> = {};
     for (const ship of ships) {
       countMap[ship.ship_date] = (countMap[ship.ship_date] ?? 0) + 1;
     }
 
-    // Start of the grid: go back 52 weeks from the Sunday of current week
     const endDate = today;
-    const startDate = subDays(startOfWeek(today, { weekStartsOn: 0 }), (WEEKS - 1) * 7);
+    const startDate = subDays(startOfWeek(today, { weekStartsOn: 0 }), (weeks - 1) * 7);
 
-    // Build columns: each column is a week (Sun→Sat)
     const columns: Array<Array<{ date: Date; count: number } | null>> = [];
     let cursor = startDate;
 
@@ -52,7 +66,6 @@ export default function Heatmap({ ships }: Props) {
       cursor = addDays(cursor, 7);
     }
 
-    // Month labels: track where each month starts
     const monthLabels: Array<{ label: string; col: number }> = [];
     let lastMonth = -1;
     columns.forEach((col, i) => {
@@ -67,16 +80,16 @@ export default function Heatmap({ ships }: Props) {
     });
 
     return { grid: columns, months: monthLabels };
-  }, [ships]);
+  }, [ships, weeks]);
 
   return (
-    <div className="relative select-none">
+    <div ref={containerRef} className="relative select-none">
       {/* Month labels */}
-      <div className="flex mb-1" style={{ gap: "2px" }}>
+      <div className="flex mb-1" style={{ gap: `${GAP}px` }}>
         {grid.map((_, i) => {
           const month = months.find((m) => m.col === i);
           return (
-            <div key={i} className="w-4 flex-shrink-0 text-[9px] text-ship-text text-center overflow-visible whitespace-nowrap">
+            <div key={i} className="w-6 flex-shrink-0 text-[9px] text-ship-text text-center overflow-visible whitespace-nowrap">
               {month ? month.label : ""}
             </div>
           );
@@ -84,16 +97,16 @@ export default function Heatmap({ ships }: Props) {
       </div>
 
       {/* Grid: 7 rows, N columns */}
-      <div className="flex" style={{ gap: "2px" }}>
+      <div className="flex" style={{ gap: `${GAP}px` }}>
         {grid.map((col, ci) => (
-          <div key={ci} className="flex flex-col" style={{ gap: "2px" }}>
+          <div key={ci} className="flex flex-col" style={{ gap: `${GAP}px` }}>
             {col.map((cell, ri) =>
               cell === null ? (
-                <div key={ri} className="w-4 h-4 rounded-sm" />
+                <div key={ri} className="w-6 h-6 rounded-sm" />
               ) : (
                 <div
                   key={ri}
-                  className={`w-4 h-4 rounded-sm cursor-default ${getCellColor(cell.count)}`}
+                  className={`w-6 h-6 rounded-sm cursor-default ${getCellColor(cell.count)}`}
                   onMouseEnter={(e) => {
                     const rect = (e.target as HTMLElement).getBoundingClientRect();
                     setTooltip({
@@ -108,15 +121,6 @@ export default function Heatmap({ ships }: Props) {
             )}
           </div>
         ))}
-      </div>
-
-      {/* Legend */}
-      <div className="flex items-center gap-1 mt-2 justify-end text-[10px] text-ship-text">
-        <span>Less</span>
-        {["bg-[#EEEEEA]", "bg-[#F4C4C4]", "bg-[#F4ABAB]", "bg-[#F49191]", "bg-[#E07070]"].map((c, i) => (
-          <div key={i} className={`w-4 h-4 rounded-sm ${c}`} />
-        ))}
-        <span>More</span>
       </div>
 
       {/* Tooltip */}

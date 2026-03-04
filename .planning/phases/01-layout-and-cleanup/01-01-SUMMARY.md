@@ -91,6 +91,14 @@ None - no external service configuration required.
 - Bottom nav removed from both pages — Phase 2 navigation work (if any) starts from a clean slate
 - Modal (SubmitShipModal) is untouched and ready for Phase 2 conversion if planned
 
+## Self-Check: PASSED
+
+- FOUND: app/page.tsx
+- FOUND: app/feed/page.tsx
+- FOUND: .planning/phases/01-layout-and-cleanup/01-01-SUMMARY.md
+- FOUND: commit f01aea2 (Task 1)
+- FOUND: commit 53a3f90 (Task 2)
+
 ---
 *Phase: 01-layout-and-cleanup*
 *Completed: 2026-03-04*

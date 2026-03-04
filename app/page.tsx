@@ -32,7 +32,7 @@ export default function Home() {
   return (
     <>
       {/* Header */}
-      <header className="pt-6 pb-4">
+      <header className="pt-6 pb-8">
         <div className="text-6xl font-bold">
           <span className="text-ship-accent">ship</span>
           <span className="text-ship-text">log</span>
@@ -40,9 +40,16 @@ export default function Home() {
       </header>
 
       {/* Heatmap card */}
-      <div className="bg-ship-card border border-ship-border rounded-xl p-4 mb-4">
-        <div className="flex items-center mb-3">
-          <span className="text-xs text-ship-text">2025 Shipping</span>
+      <div className="bg-ship-card border border-ship-border rounded-xl p-4 mb-8">
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-sm font-bold text-ship-text tracking-wide">how many ships?</span>
+          <div className="flex items-center gap-1 text-[10px] text-ship-text">
+            <span>Less</span>
+            {["bg-[#EEEEEA]", "bg-[#F4C4C4]", "bg-[#F4ABAB]", "bg-[#F49191]", "bg-[#E07070]"].map((c, i) => (
+              <div key={i} className={`w-3 h-3 rounded-sm ${c}`} />
+            ))}
+            <span>More</span>
+          </div>
         </div>
         {loading ? (
           <div className="h-24 flex items-center justify-center text-xs text-ship-text">
@@ -59,7 +66,7 @@ export default function Home() {
       {/* Submit button */}
       <button
         onClick={() => setModalOpen(true)}
-        className="w-full mt-5 bg-ship-accent text-white font-bold py-4 rounded-2xl text-base tracking-wide hover:bg-ship-accent-dark transition-colors"
+        className="w-full mt-8 bg-ship-accent text-white font-bold py-4 rounded-2xl text-lg tracking-wide hover:bg-ship-accent-dark transition-colors"
       >
         🚢 Submit a Ship
       </button>

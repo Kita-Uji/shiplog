@@ -7,9 +7,10 @@ interface Props {
   ship: Ship;
   truncate?: boolean;
   href?: string;
+  onDelete?: () => void;
 }
 
-export default function ShipCard({ ship, truncate = true, href }: Props) {
+export default function ShipCard({ ship, truncate = true, href, onDelete }: Props) {
   const dateLabel = (() => {
     try {
       return format(parseISO(ship.ship_date), "MMM d, yyyy");
@@ -44,18 +45,31 @@ export default function ShipCard({ ship, truncate = true, href }: Props) {
           <div className="w-2 h-2 rounded-full bg-ship-accent flex-shrink-0" />
           <span className="text-sm text-ship-text">{dateLabel}</span>
           {ship.link_url && (
-            <a
-              href={ship.link_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
+            <button
+              type="button"
+              onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(ship.link_url!, "_blank", "noopener,noreferrer"); }}
               className="ml-auto flex items-center gap-1 text-[10px] text-ship-accent border border-ship-accent/40 rounded-full px-2 py-0.5 hover:bg-ship-accent/10 transition-colors"
             >
               <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
               Link
-            </a>
+            </button>
+          )}
+          {onDelete && (
+            <button
+              type="button"
+              onClick={(e) => { e.preventDefault(); e.stopPropagation(); onDelete(); }}
+              className={`${ship.link_url ? "ml-1" : "ml-auto"} p-1 text-ship-text/40 hover:text-red-400 transition-colors`}
+              aria-label="Delete ship"
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="3 6 5 6 21 6" />
+                <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6" />
+                <path d="M10 11v6M14 11v6" />
+                <path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2" />
+              </svg>
+            </button>
           )}
         </div>
         <h3 className="font-bold text-ship-accent text-lg leading-tight">{ship.title}</h3>

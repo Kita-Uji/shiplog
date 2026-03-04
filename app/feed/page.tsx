@@ -3,11 +3,13 @@
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import ShipCard from "@/components/ShipCard";
+import DeleteShipDialog from "@/components/DeleteShipDialog";
 import type { Ship } from "@/types/ship";
 
 export default function FeedPage() {
   const [ships, setShips] = useState<Ship[]>([]);
   const [loading, setLoading] = useState(true);
+  const [deleteTarget, setDeleteTarget] = useState<Ship | null>(null);
 
   const fetchShips = useCallback(async () => {
     try {
@@ -34,7 +36,7 @@ export default function FeedPage() {
           className="inline-flex items-center gap-3 text-ship-text hover:text-ship-accent transition-colors"
         >
           <span className="text-2xl leading-none">←</span>
-          <span className="text-base font-bold tracking-wide translate-y-px">Ship Feed</span>
+          <span className="text-base font-bold tracking-wide translate-y-px">Return to Port</span>
         </Link>
       </header>
 
@@ -55,12 +57,19 @@ export default function FeedPage() {
         <div className="flex flex-col gap-4">
           {ships.map((ship) => (
             <div key={ship.id} id={`ship-${ship.id}`}>
-              <ShipCard ship={ship} truncate={false} />
+              <ShipCard ship={ship} truncate={false} onDelete={() => setDeleteTarget(ship)} />
             </div>
           ))}
         </div>
       )}
 
+      {deleteTarget && (
+        <DeleteShipDialog
+          ship={deleteTarget}
+          onClose={() => setDeleteTarget(null)}
+          onDeleted={() => { setDeleteTarget(null); fetchShips(); }}
+        />
+      )}
     </>
   );
 }
