@@ -32,7 +32,11 @@
 4. Feed page displays full ship list without filter buttons (All/With Screenshot removed)
 5. Heatmap backgrounds and post card backgrounds are lightened (~10%), creating visual hierarchy
 
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Cleanup: remove avatar, subtitle, bottom nav, filter buttons; swap submit emoji
+- [ ] 01-02-PLAN.md — Layout & Scale: widen container, enlarge title, resize heatmap, lighten backgrounds
 
 ---
 
@@ -58,7 +62,7 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Layout & Cleanup | 0/N | Not started | - |
+| 1. Layout & Cleanup | 0/2 | Planned | - |
 | 2. Modal & Navigation | 0/N | Not started | - |
 
 ---
