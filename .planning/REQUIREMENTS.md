@@ -16,11 +16,11 @@ Requirements for this UX refinement milestone.
 
 ### Cleanup
 
-- [ ] **CLEAN-01**: User logo removed from top-right header area
-- [ ] **CLEAN-02**: "Track your builds" subtitle removed
-- [ ] **CLEAN-03**: Bottom navigation banner (Home / Feed tabs) removed
-- [ ] **CLEAN-04**: Feed page filter button (All / With Screenshot) removed
-- [ ] **CLEAN-05**: Submit Ship button uses ship emoji (🚢) instead of rocket emoji
+- [x] **CLEAN-01**: User logo removed from top-right header area
+- [x] **CLEAN-02**: "Track your builds" subtitle removed
+- [x] **CLEAN-03**: Bottom navigation banner (Home / Feed tabs) removed
+- [x] **CLEAN-04**: Feed page filter button (All / With Screenshot) removed
+- [x] **CLEAN-05**: Submit Ship button uses ship emoji (🚢) instead of rocket emoji
 - [ ] **CLEAN-06**: Heatmap background and ship post card backgrounds lightened by ~10%
 
 ### Modal UX
@@ -58,11 +58,11 @@ Requirements for this UX refinement milestone.
 | LAYOUT-02 | Phase 1 | Pending |
 | LAYOUT-03 | Phase 1 | Pending |
 | LAYOUT-04 | Phase 1 | Pending |
-| CLEAN-01 | Phase 1 | Pending |
-| CLEAN-02 | Phase 1 | Pending |
-| CLEAN-03 | Phase 1 | Pending |
-| CLEAN-04 | Phase 1 | Pending |
-| CLEAN-05 | Phase 1 | Pending |
+| CLEAN-01 | Phase 1 | Complete |
+| CLEAN-02 | Phase 1 | Complete |
+| CLEAN-03 | Phase 1 | Complete |
+| CLEAN-04 | Phase 1 | Complete |
+| CLEAN-05 | Phase 1 | Complete |
 | CLEAN-06 | Phase 1 | Pending |
 | MODAL-01 | Phase 2 | Pending |
 | MODAL-02 | Phase 2 | Pending |
