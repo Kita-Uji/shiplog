@@ -28,14 +28,14 @@ export default function FeedPage() {
   return (
     <>
       {/* Header */}
-      <header className="flex items-center gap-3 pt-6 pb-4">
+      <header className="pt-6 pb-4">
         <Link
           href="/"
-          className="text-ship-text hover:text-ship-accent transition-colors text-sm"
+          className="inline-flex items-center gap-3 text-ship-text hover:text-ship-accent transition-colors"
         >
-          ←
+          <span className="text-2xl leading-none">←</span>
+          <span className="text-base font-bold tracking-wide translate-y-px">Ship Feed</span>
         </Link>
-        <h1 className="text-base font-bold text-ship-text tracking-wide">Ship Feed</h1>
       </header>
 
       {/* Total count */}
@@ -54,7 +54,9 @@ export default function FeedPage() {
       ) : (
         <div className="flex flex-col gap-4">
           {ships.map((ship) => (
-            <ShipCard key={ship.id} ship={ship} truncate={false} />
+            <div key={ship.id} id={`ship-${ship.id}`}>
+              <ShipCard ship={ship} truncate={false} />
+            </div>
           ))}
         </div>
       )}
