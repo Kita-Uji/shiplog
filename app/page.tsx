@@ -33,7 +33,7 @@ export default function Home() {
     <>
       {/* Header */}
       <header className="pt-6 pb-4">
-        <div className="text-2xl font-bold">
+        <div className="text-6xl font-bold">
           <span className="text-ship-accent">ship</span>
           <span className="text-ship-text">log</span>
         </div>
