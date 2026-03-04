@@ -10,7 +10,7 @@
 
 ## Phases
 
-- [ ] **Phase 1: Layout & Cleanup** — Home and feed visual refinements, size scaling, element removal
+- [x] **Phase 1: Layout & Cleanup** — Home and feed visual refinements, size scaling, element removal (completed 2026-03-04)
 - [ ] **Phase 2: Modal & Navigation** — Centered modal redesign and click-through navigation
 
 ---
@@ -62,7 +62,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Layout & Cleanup | 1/2 | In Progress|  |
+| 1. Layout & Cleanup | 2/2 | Complete   | 2026-03-04 |
 | 2. Modal & Navigation | 0/N | Not started | - |
 
 ---
