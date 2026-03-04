@@ -30,8 +30,8 @@ Requirements for this UX refinement milestone.
 
 ### Navigation
 
-- [ ] **NAV-01**: Clicking a ship entry on the homepage navigates to /feed
-- [ ] **NAV-02**: Navigating via homepage entry scrolls to that specific post in the feed
+- [x] **NAV-01**: Clicking a ship entry on the homepage navigates to /feed
+- [x] **NAV-02**: Navigating via homepage entry scrolls to that specific post in the feed
 
 ## v2 Requirements
 
@@ -66,8 +66,8 @@ Requirements for this UX refinement milestone.
 | CLEAN-06 | Phase 1 | Complete |
 | MODAL-01 | Phase 2 | Pending |
 | MODAL-02 | Phase 2 | Pending |
-| NAV-01 | Phase 2 | Pending |
-| NAV-02 | Phase 2 | Pending |
+| NAV-01 | Phase 2 | Complete |
+| NAV-02 | Phase 2 | Complete |
 
 **Coverage:**
 - v1 requirements: 14 total

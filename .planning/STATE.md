@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-last_updated: "2026-03-04T06:57:28.002Z"
+last_updated: "2026-03-04T08:27:20.927Z"
 progress:
   total_phases: 2
-  completed_phases: 1
-  total_plans: 2
-  completed_plans: 2
+  completed_phases: 2
+  total_plans: 4
+  completed_plans: 4
 ---
 
 # State — Shiplog
@@ -52,6 +52,8 @@ progress:
 ---
 | Phase 01-layout-and-cleanup P01 | 2 | 2 tasks | 2 files |
 | Phase 01-layout-and-cleanup P02 | 20 | 3 tasks | 5 files |
+| Phase 02-modal-and-navigation P02 | 2 | 2 tasks | 3 files |
+| Phase 02-modal-and-navigation P01 | 2 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -65,6 +67,8 @@ progress:
 - [Phase 01-layout-and-cleanup]: Dropped justify-between from homepage header when avatar removed — only one child element remains
 - [Phase 01-layout-and-cleanup]: Removed filter state + derived variable + filter buttons atomically in feed page
 - [Phase 01-layout-and-cleanup]: Used max-w-2xl as wider container; 16 weeks for heatmap; ship-card lightened to #F5F5EF
+- [Phase 02-modal-and-navigation]: Optional href prop on ShipCard preserves feed behavior — feed cards pass no href so they remain plain divs
+- [Phase 02-modal-and-navigation]: Hash URL navigation (/feed#ship-{id}) with id anchor attributes — zero JavaScript, native browser scroll
 
 ### Key Technical Notes
 
