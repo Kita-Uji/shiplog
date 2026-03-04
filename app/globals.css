@@ -39,3 +39,13 @@ body {
 .animate-modal-in {
   animation: modal-in 0.2s ease-out forwards;
 }
+
+@keyframes ring-fade {
+  0%   { box-shadow: 0 0 0 2px #F49191; }
+  60%  { box-shadow: 0 0 0 2px #F49191; }
+  100% { box-shadow: 0 0 0 2px transparent; }
+}
+
+.ring-fade {
+  animation: ring-fade 1.5s ease-out forwards;
+}

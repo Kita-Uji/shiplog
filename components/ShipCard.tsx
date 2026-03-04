@@ -7,10 +7,11 @@ interface Props {
   ship: Ship;
   truncate?: boolean;
   href?: string;
+  highlight?: boolean;
   onDelete?: () => void;
 }
 
-export default function ShipCard({ ship, truncate = true, href, onDelete }: Props) {
+export default function ShipCard({ ship, truncate = true, href, highlight, onDelete }: Props) {
   const dateLabel = (() => {
     try {
       return format(parseISO(ship.ship_date), "MMM d, yyyy");
@@ -82,11 +83,13 @@ export default function ShipCard({ ship, truncate = true, href, onDelete }: Prop
     </>
   );
 
+  const ringClass = highlight ? " ring-fade" : "";
+
   if (href) {
     return (
       <Link
         href={href}
-        className="block bg-ship-card rounded-xl border border-ship-border overflow-hidden hover:border-ship-accent/50 transition-colors"
+        className={`block bg-ship-card rounded-xl border border-ship-border overflow-hidden hover:border-ship-accent/50 transition-colors${ringClass}`}
       >
         {cardBody}
       </Link>
@@ -94,7 +97,7 @@ export default function ShipCard({ ship, truncate = true, href, onDelete }: Prop
   }
 
   return (
-    <div className="bg-ship-card rounded-xl border border-ship-border overflow-hidden">
+    <div className={`bg-ship-card rounded-xl border border-ship-border overflow-hidden${ringClass}`}>
       {cardBody}
     </div>
   );

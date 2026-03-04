@@ -10,6 +10,7 @@ export default function FeedPage() {
   const [ships, setShips] = useState<Ship[]>([]);
   const [loading, setLoading] = useState(true);
   const [deleteTarget, setDeleteTarget] = useState<Ship | null>(null);
+  const [highlightId, setHighlightId] = useState<string | null>(null);
 
   const fetchShips = useCallback(async () => {
     try {
@@ -26,6 +27,18 @@ export default function FeedPage() {
   useEffect(() => {
     fetchShips();
   }, [fetchShips]);
+
+  useEffect(() => {
+    if (ships.length === 0) return;
+    const hash = window.location.hash;
+    if (!hash) return;
+    const id = hash.slice(1);
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    setHighlightId(id);
+    setTimeout(() => setHighlightId(null), 1500);
+  }, [ships]);
 
   return (
     <>
@@ -57,7 +70,7 @@ export default function FeedPage() {
         <div className="flex flex-col gap-4">
           {ships.map((ship) => (
             <div key={ship.id} id={`ship-${ship.id}`}>
-              <ShipCard ship={ship} truncate={false} onDelete={() => setDeleteTarget(ship)} />
+              <ShipCard ship={ship} truncate={false} highlight={highlightId === `ship-${ship.id}`} onDelete={() => setDeleteTarget(ship)} />
             </div>
           ))}
         </div>

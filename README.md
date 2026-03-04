@@ -13,8 +13,8 @@ A personal shipping tracker. Log what you build, visualise your output over time
 - **Stats bar** — total ships, active days, and current streak at a glance
 - **Full feed** — scrollable log of every ship with screenshots, dates, and links
 - **Submit modal** — log a new ship with title, details, optional screenshot, and optional link
-- **Delete** — remove a ship from the log with a confirmation dialog
-- **Hash navigation** — clicking a ship on the home screen scrolls directly to it in the feed
+- **Delete** — remove a ship from the log; password-gated to prevent accidental removal
+- **Hash navigation** — clicking a ship on the home screen smooth-scrolls to it in the feed with a brief highlight pulse
 
 ## Stack
 

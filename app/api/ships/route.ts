@@ -7,7 +7,8 @@ export async function GET() {
     const { data, error } = await supabase
       .from("ships")
       .select("*")
-      .order("ship_date", { ascending: false });
+      .order("ship_date", { ascending: false })
+      .order("created_at", { ascending: false });
 
     if (error) throw error;
     return NextResponse.json(data);
