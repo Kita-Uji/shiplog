@@ -54,7 +54,11 @@ Plans:
 3. Clicking any ship entry on homepage navigates to /feed and scrolls to that specific post
 4. All navigation and submission flows work without page reloads
 
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Modal: convert bottom sheet to centered floating modal with scale-in animation
+- [ ] 02-02-PLAN.md — Navigation: make homepage ship cards clickable with hash-scroll to feed entries
 
 ---
 
@@ -63,7 +67,7 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Layout & Cleanup | 2/2 | Complete   | 2026-03-04 |
-| 2. Modal & Navigation | 0/N | Not started | - |
+| 2. Modal & Navigation | 0/2 | Not started | - |
 
 ---
 
