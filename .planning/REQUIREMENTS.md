@@ -25,8 +25,8 @@ Requirements for this UX refinement milestone.
 
 ### Modal UX
 
-- [ ] **MODAL-01**: Submit Ship form appears as a centered floating modal (not bottom sheet)
-- [ ] **MODAL-02**: Modal open/close animation is preserved
+- [x] **MODAL-01**: Submit Ship form appears as a centered floating modal (not bottom sheet)
+- [x] **MODAL-02**: Modal open/close animation is preserved
 
 ### Navigation
 
@@ -64,8 +64,8 @@ Requirements for this UX refinement milestone.
 | CLEAN-04 | Phase 1 | Complete |
 | CLEAN-05 | Phase 1 | Complete |
 | CLEAN-06 | Phase 1 | Complete |
-| MODAL-01 | Phase 2 | Pending |
-| MODAL-02 | Phase 2 | Pending |
+| MODAL-01 | Phase 2 | Complete |
+| MODAL-02 | Phase 2 | Complete |
 | NAV-01 | Phase 2 | Complete |
 | NAV-02 | Phase 2 | Complete |
 

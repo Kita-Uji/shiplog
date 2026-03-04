@@ -3,7 +3,7 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-last_updated: "2026-03-04T08:27:20.927Z"
+last_updated: "2026-03-04T08:27:28.794Z"
 progress:
   total_phases: 2
   completed_phases: 2
@@ -69,6 +69,8 @@ progress:
 - [Phase 01-layout-and-cleanup]: Used max-w-2xl as wider container; 16 weeks for heatmap; ship-card lightened to #F5F5EF
 - [Phase 02-modal-and-navigation]: Optional href prop on ShipCard preserves feed behavior — feed cards pass no href so they remain plain divs
 - [Phase 02-modal-and-navigation]: Hash URL navigation (/feed#ship-{id}) with id anchor attributes — zero JavaScript, native browser scroll
+- [Phase 02-modal-and-navigation]: Kept existing slide-up animation in globals.css for backward compatibility — modal component simply stops using it
+- [Phase 02-modal-and-navigation]: Used scale(0.95)+translateY(-8px) to scale(1)+0 for natural drop-in feel for centered modal
 
 ### Key Technical Notes
 
