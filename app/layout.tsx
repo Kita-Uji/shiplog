@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "shiplog",
@@ -14,7 +15,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-ship-bg min-h-screen font-mono">
-        <div className="max-w-2xl mx-auto px-4 pb-8">{children}</div>
+        <div className="max-w-2xl mx-auto px-4">
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );
