@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import ShipCard from "@/components/ShipCard";
 import DeleteShipDialog from "@/components/DeleteShipDialog";
+import ScreenshotLightbox from "@/components/ScreenshotLightbox";
 import type { Ship } from "@/types/ship";
 
 export default function FeedPage() {
@@ -11,6 +12,7 @@ export default function FeedPage() {
   const [loading, setLoading] = useState(true);
   const [deleteTarget, setDeleteTarget] = useState<Ship | null>(null);
   const [highlightId, setHighlightId] = useState<string | null>(null);
+  const [lightbox, setLightbox] = useState<{ url: string; alt: string } | null>(null);
 
   const fetchShips = useCallback(async () => {
     try {
@@ -70,7 +72,7 @@ export default function FeedPage() {
         <div className="flex flex-col gap-4">
           {ships.map((ship) => (
             <div key={ship.id} id={`ship-${ship.id}`}>
-              <ShipCard ship={ship} truncate={false} highlight={highlightId === `ship-${ship.id}`} onDelete={() => setDeleteTarget(ship)} />
+              <ShipCard ship={ship} truncate={false} highlight={highlightId === `ship-${ship.id}`} onDelete={() => setDeleteTarget(ship)} onScreenshotClick={(url) => setLightbox({ url, alt: ship.title })} />
             </div>
           ))}
         </div>
@@ -82,6 +84,10 @@ export default function FeedPage() {
           onClose={() => setDeleteTarget(null)}
           onDeleted={() => { setDeleteTarget(null); fetchShips(); }}
         />
+      )}
+
+      {lightbox && (
+        <ScreenshotLightbox url={lightbox.url} alt={lightbox.alt} onClose={() => setLightbox(null)} />
       )}
     </>
   );

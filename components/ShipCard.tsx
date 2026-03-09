@@ -9,9 +9,10 @@ interface Props {
   href?: string;
   highlight?: boolean;
   onDelete?: () => void;
+  onScreenshotClick?: (url: string) => void;
 }
 
-export default function ShipCard({ ship, truncate = true, href, highlight, onDelete }: Props) {
+export default function ShipCard({ ship, truncate = true, href, highlight, onDelete, onScreenshotClick }: Props) {
   const dateLabel = (() => {
     try {
       return format(parseISO(ship.ship_date), "MMM d, yyyy");
@@ -24,14 +25,19 @@ export default function ShipCard({ ship, truncate = true, href, highlight, onDel
     <>
       {/* Screenshot area */}
       {ship.screenshot_url ? (
-        <div className="relative w-full aspect-video">
-          <Image
-            src={ship.screenshot_url}
-            alt={ship.title}
-            fill
-            className="object-cover"
-          />
-        </div>
+        onScreenshotClick ? (
+          <button
+            type="button"
+            className="relative w-full aspect-video cursor-zoom-in block"
+            onClick={(e) => { e.preventDefault(); e.stopPropagation(); onScreenshotClick(ship.screenshot_url!); }}
+          >
+            <Image src={ship.screenshot_url} alt={ship.title} fill className="object-cover" />
+          </button>
+        ) : (
+          <div className="relative w-full aspect-video">
+            <Image src={ship.screenshot_url} alt={ship.title} fill className="object-cover" />
+          </div>
+        )
       ) : (
         <div className="w-full aspect-video flex items-center justify-center border-b border-ship-border">
           <span className="text-xs tracking-widest text-ship-border border border-ship-border px-3 py-1 rounded">
